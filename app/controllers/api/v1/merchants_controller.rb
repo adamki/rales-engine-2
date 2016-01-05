@@ -22,9 +22,9 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.find(random_merchant_id)
   end
 
-  def items
-    respond_with current_merchant.items
-  end
+  #def items
+    #respond_with current_merchant.items
+  #end
 
   def invoices 
     respond_with current_merchant.invoices
