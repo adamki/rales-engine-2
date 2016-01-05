@@ -16,7 +16,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success 
     assert_equal "Item Qui Esse", json_response["name"]
     assert_equal "Some Description", json_response["description"]
-    assert_equal "1", json_response["merchant_id"]
+    assert_equal "1037692251", json_response["merchant_id"]
   end
 
   test "#find" do
