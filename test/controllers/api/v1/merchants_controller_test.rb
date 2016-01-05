@@ -20,4 +20,15 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "adam", json_response["name"]
   end
+
+  test "#find" do
+    get :find, name: "adam", format: :json
+
+    json_response = JSON.parse(response.body)
+
+    assert_response :success
+    assert_equal "adam", json_response["name"]
+    assert_equal 980190962, json_response["id"]
+  end
+
 end
