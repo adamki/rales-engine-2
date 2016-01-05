@@ -1,0 +1,261 @@
+{
+  "MiniTest": {
+    "coverage": {
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/models/customer.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/models/invoice_item.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/models/invoice.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/models/item.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/models/merchant.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/models/transaction.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/api/v1/invoices_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/api/v1/customers_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/api/v1/invoice_items_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/api/v1/invoices_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/api/v1/items_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/api/v1/merchants_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/api/v1/transactions_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/customers_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/invoice_items_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/invoices_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/items_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/helpers/transactions_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/api/v1/transactions_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/api/v1/items_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/api/v1/merchants_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/api/v1/customers_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null
+      ],
+      "/Users/adamjensen/Turing/m3.1/w4/rales-engine-2/app/controllers/api/v1/invoice_items_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1452022377
+  }
+}
