@@ -31,4 +31,12 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_equal 980190962, json_response["id"]
   end
 
+  test "#find_all" do
+    get :find_all, name: "grace", format: :json
+
+    json_response = JSON.parse(response.body)
+    assert_response :success
+    assert_equal 1, json_response.count
+    assert_equal "grace", json_response.first["name"]
+  end
 end

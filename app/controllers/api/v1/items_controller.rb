@@ -13,6 +13,10 @@ class Api::V1::ItemsController < ApplicationController
     respond_with Item.where(item_params).first
   end
 
+  def find_all
+    respond_with Item.where(item_params)
+  end
+
   private
 
     def item_params

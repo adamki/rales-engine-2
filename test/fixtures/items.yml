@@ -14,3 +14,8 @@ two:
   name: Item Qui Esse
   description: Some Description
   merchant_id: 1
+
+trhee:
+  name: Item Ea Voluptatum
+  description: Some Other Description
+  merchant_id: 1

@@ -29,4 +29,13 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "shipped", json_response["status"]
   end
+
+  test "#find_all" do
+    get :find_all, status: "shipped", format: :json
+
+    json_response = JSON.parse(response.body)
+    assert_response :success
+    assert_equal 4, json_response.count
+  end
+
 end

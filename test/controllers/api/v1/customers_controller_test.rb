@@ -39,5 +39,13 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "Jorge", json_response["first_name"]
   end
+
+  test "#find_all" do
+    get :find_all, last_name: "tellez", format: :json
+
+    json_response = JSON.parse(response.body)
+    assert_response :success
+    assert_equal 2, json_response.count
+  end
 end
 

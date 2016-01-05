@@ -31,4 +31,12 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "Some Description", json_response["description"]
   end
+
+  test "#find_all" do
+    get :find_all, merchant_id: "1", format: :json
+
+    json_response = JSON.parse(response.body)
+    assert_response :success
+    assert_equal 3, json_response.count
+  end
 end
