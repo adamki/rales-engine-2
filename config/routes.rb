@@ -7,5 +7,4 @@ Rails.application.routes.draw do
       resources :invoice_items,  only: [:index, :show]
     end
   end
-
 end
