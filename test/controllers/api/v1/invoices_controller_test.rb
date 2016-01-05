@@ -14,14 +14,14 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
     get :show, id: invoice.id, format: :json
 
     assert_response :success 
-    assert_equal "not shipped", json_response["status"]
+    assert_equal "incomplete", json_response["status"]
   end
 
   test "#find" do
     get :find, created_at: "2012-03-25 09:54:09", format: :json
 
     assert_response :success
-    assert_equal "shipped", json_response["status"]
+    assert_equal "complete", json_response["status"]
   end
 
   test "#find_all" do
@@ -30,7 +30,7 @@ class Api::V1::InvoicesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal 2, json_response.count
-    assert_equal "not shipped", json_response.first["status"]
-    assert_equal "shipped", json_response.second["status"]
+    assert_equal "incomplete", json_response.first["status"]
+    assert_equal "complete", json_response.second["status"]
   end
 end
