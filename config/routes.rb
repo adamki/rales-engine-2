@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get "merchants/find_all", to: "merchants#find_all", defaults: { format: :json }
       get "merchants/random", to: "merchants#random", defaults: { format: :json }
       get "merchants/items", to: "merchants#items", defaults: { format: :json }
+      get "merchants/invoices", to: "merchants#invoices", defaults: { format: :json }
       resources :merchants, only: [:index, :show], defaults: { format: :json }
 
       get "customers/find", to: "customers#find", defaults: {format: :json }

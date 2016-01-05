@@ -25,6 +25,10 @@ class Api::V1::MerchantsController < ApplicationController
   def items
     respond_with current_merchant.items
   end
+
+  def invoices 
+    respond_with current_merchant.invoices
+  end
   
   private
   

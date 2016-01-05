@@ -6,16 +6,16 @@
 #
 
 one: 
-  status: shipped
+  status: complete 
   created_at: 2012-03-25 09:54:09
   updated_at: 2012-03-25 09:54:09
 
 two: 
-  status: not shipped 
+  status: incomplete 
   created_at: 2012-03-12 05:54:09
   updated_at: 2012-03-12 05:54:09
 
 three: 
-  status: shipped 
+  status: complete 
   created_at: 2012-03-12 05:54:09
   updated_at: 2012-03-12 05:54:09
