@@ -13,6 +13,15 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.where(merchant_params).first
   end
 
+  def find_all
+    respond_with Merchant.where(merchant_params)
+  end
+
+  def random
+    random_merchant_id = rand(Merchant.count)
+    respond_with Merchant.find(random_merchant_id)
+  end
+  
   private
   
     def merchant_params
