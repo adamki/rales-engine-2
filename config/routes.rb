@@ -23,6 +23,23 @@ Rails.application.routes.draw do
         end
       end
 
+
+      resources :invoices, only: [:index, :show] do
+        resources :transactions, only: [:index], module: "invoices"
+        resources :invoice_items, only: [:index], module: "invoices"
+        resources :items, only: [:index], module: "invoices"
+
+        member do
+          get :customer, to: "invoices/customers#show"
+          get :merchant, to: "invoices/merchants#show"
+        end
+
+        collection do
+          get "find"
+          get "find_all"
+        end
+      end
+
       get "customers/find", to: "customers#find", defaults: {format: :json }
       get "customers/find_all", to: "customers#find_all", defaults: {format: :json }
       get "customers/random", to: "customers#random", defaults: {format: :json }
@@ -33,10 +50,6 @@ Rails.application.routes.draw do
       get "invoice_items/random", to: "invoice_items#random", defaults: { format: :json }
       resources :invoice_items,  only: [:index, :show], defaults: { format: :json }
 
-      get "invoices/find", to: "invoices#find", defaults: { format: :json }
-      get "invoices/find_all", to: "invoices#find_all", defaults: { format: :json }
-      get "invoices/random", to: "invoices#random", defaults: { format: :json }
-      resources :invoices,  only: [:index, :show], defaults: { format: :json }
 
       get "transactions/find", to: "transactions#find", defaults: { format: :json }
       get "transactions/find_all", to: "transactions#find_all", defaults: { format: :json }
