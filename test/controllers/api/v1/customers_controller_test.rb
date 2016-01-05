@@ -21,4 +21,23 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     assert_equal "Jeff", json_response["first_name"]
     assert_equal "Casimir", json_response["last_name"]
   end
+
+  test "#find" do
+    get :find, first_name: "Jeff", format: :json
+
+    json_response = JSON.parse(response.body)
+
+    assert_response :success
+    assert_equal "Casimir", json_response["last_name"]
+  end
+
+  test "#find customer using lower-case" do
+    get :find, last_name: "tellez", format: :json
+
+    json_response = JSON.parse(response.body)
+
+    assert_response :success
+    assert_equal "Jorge", json_response["first_name"]
+  end
 end
+
