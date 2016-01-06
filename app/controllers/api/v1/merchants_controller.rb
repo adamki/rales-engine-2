@@ -22,14 +22,14 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.find(random_merchant_id)
   end
 
-  #def items
-    #respond_with current_merchant.items
-  #end
-
   def invoices 
     respond_with current_merchant.invoices
   end
   
+  def favorite_customer
+    respond_with Merchant.find(params[:id]).favorite_customer
+  end
+
   private
   
     def merchant_params
