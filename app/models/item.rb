@@ -6,6 +6,8 @@ class Item < ActiveRecord::Base
   
   before_save :currency_conversion
 
+  default_scope {order('ID ASC')}
+
   def currency_conversion
     self.unit_price = (self.unit_price/100)
   end
