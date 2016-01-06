@@ -19,4 +19,10 @@ class Merchant < ActiveRecord::Base
     .group("customers.id")
     .order("invoice_count DESC").first
   end
+
+  def customers_with_pending_invoices
+    invoices.joins(:transactions)
+    .merge(Transaction.unsuccessful)
+    .map(&:customer).uniq
+  end
 end

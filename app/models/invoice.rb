@@ -9,4 +9,5 @@ class Invoice < ActiveRecord::Base
   def self.for_a_given_invoice_item(id)
     joins(:invoice_items).first
   end
+
 end

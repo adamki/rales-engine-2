@@ -61,4 +61,37 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "Jhun", json_response["first_name"]
   end
+
+  test "#customers_with_pending_invoices returns a collection of of customers" do
+    skip
+    rei = Merchant.create(name: "REI")
+
+    #success
+    juhn = Customer.create(first_name: "Jhun", last_name: "bug")
+    invoice_1 = Invoice.create(customer_id: juhn.id,
+                             merchant_id: rei.id,
+                             status: "shipped")
+    transaction_1 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+    transaction_2 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+
+    #failed
+    adam = Customer.create(first_name: "Adam", last_name: "bug")
+    invoice_2 = Invoice.create(customer_id: adam.id,
+                             merchant_id: rei.id,
+                             status: "shipped")
+    transaction_3 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "failed",
+                                       invoice_id: invoice_2.id)
+
+    get :customers_with_pending_invoices, id: rei.id, format: :json
+
+    assert_response :success
+    assert_equal 1, json_response.count
+    assert_kind_of Array, json_response
+    assert_equal "Jhun", json_response["first_name"]
+  end
 end
