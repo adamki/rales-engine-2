@@ -1,6 +1,7 @@
 class Merchant < ActiveRecord::Base
   has_many :items
   has_many :invoices
+  has_many :customers, through: :invoices
   has_many :transactions, through: :invoices
 
   def self.invoices(id)
@@ -9,5 +10,13 @@ class Merchant < ActiveRecord::Base
 
   def self.get_merchant_for_a_given_item(item_id)
     joins(:items).where(items: {id: item_id}).first
+  end
+
+  def favorite_customer
+    customers.select("customers.*, count(invoices.merchant_id) AS invoice_count")
+    .joins(invoices: :transactions)
+    .merge(Transaction.successful)
+    .group("customers.id")
+    .order("invoice_count DESC").first
   end
 end
