@@ -6,4 +6,8 @@ class Merchant < ActiveRecord::Base
   def self.invoices(id)
     joins(:invoices).where(invoices: {id: id}).first
   end
+
+  def self.get_merchant_for_a_given_item(item_id)
+    joins(:items).where(items: {id: item_id}).first
+  end
 end
