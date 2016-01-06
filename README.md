@@ -158,7 +158,7 @@ _NOTE_: All revenues should be reported as a float with two decimal places.
 
 #### Customers
 
-* `GET /api/v1/customers/:id/favorite_merchant` returns a merchant where the customer has conducted the most successful transactions
+✓* `GET /api/v1/customers/:id/favorite_merchant` returns a merchant where the customer has conducted the most successful transactions
 
 ### Feature Delivery
 
