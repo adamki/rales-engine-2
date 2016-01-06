@@ -59,5 +59,34 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     assert_equal "George", json_response.second["first_name"]
   end
 
+  test "#favorite_merchant gets the merchant for a given customer" do
+    customer = Customer.create(first_name: "Bob", last_name: "Dill")
+    chipotle = Merchant.create(name: "Chipotle")
+    qdoba    = Merchant.create(name: "Qdoba")
+
+    invoice_1 = Invoice.create(customer_id: customer.id,
+                             merchant_id: chipotle.id,
+                             status: "shipped")
+
+    invoice_2 = Invoice.create(customer_id: customer.id,
+                             merchant_id: qdoba.id,
+                             status: "shipped")
+
+    transaction_1 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+    transaction_2 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+    transaction_3 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_2.id)
+
+    get :favorite_merchant, id: customer.id, format: :json
+    
+    assert_response :success
+    assert_equal "Chipotle", json_response["name"]
+  end
+
 end
 
