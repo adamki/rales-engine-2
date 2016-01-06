@@ -12,6 +12,6 @@ class Api::V1::Transactions::InvoicesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_kind_of Hash, json_response
-    assert_equal transaction[:status], json_response["status"]
+    assert_equal invoice[:status], json_response["status"]
   end
 end

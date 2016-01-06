@@ -6,6 +6,6 @@ class Customer < ActiveRecord::Base
   end
 
   def self.get_invoices_for_a_given_customer(customer_id)
-    joins(:invoices).where(customers: {id: customer_id})
+    self.find(customer_id).invoices
   end
 end
