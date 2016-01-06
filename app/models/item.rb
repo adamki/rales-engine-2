@@ -7,4 +7,8 @@ class Item < ActiveRecord::Base
   def self.invoices(id)
     joins(:invoices).where(invoices: { id: id })
   end
+
+  def self.for_a_given_invoice_item(id)
+    joins(:invoice_items).first
+  end
 end
