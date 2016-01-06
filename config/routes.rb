@@ -54,11 +54,24 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :items, only: [:show, :index] do
+      resources :items, only: [:index, :show] do
 
         member do
           get :merchant, to: "items/merchants#show"
           get :invoice_items, to: "items/invoice_items#index"
+        end
+
+        collection do
+          get "find"
+          get "find_all"
+          get "random"
+        end
+      end
+
+      resources :transactions, only: [:index, :show] do
+
+        member do
+          get :invoice, to: "transactions/invoices#show"  
         end
 
         collection do
@@ -75,10 +88,6 @@ Rails.application.routes.draw do
       resources :customers,  only: [:index, :show], defaults: { format: :json }
 
 
-      get "transactions/find", to: "transactions#find", defaults: { format: :json }
-      get "transactions/find_all", to: "transactions#find_all", defaults: { format: :json }
-      get "transactions/random", to: "transactions#random", defaults: { format: :json }
-      resources :transactions,  only: [:index, :show], defaults: { format: :json }
 
     end
   end
