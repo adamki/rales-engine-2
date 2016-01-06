@@ -83,12 +83,18 @@ Rails.application.routes.draw do
 
       resources :customers, only: [:index, :show] do
 
+        member do
+          get :invoices, to: "customers/invoices#index"
+          get :transactions, to: "customers/transactions#index"
+        end
+
         collection do
           get "find"
           get "find_all"
           get "random"
         end
       end
+
     end
   end
 end
