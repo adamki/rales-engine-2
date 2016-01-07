@@ -133,9 +133,9 @@ using ActiveRecord queries.
 
 #### All Merchants
 
-* `GET /api/v1/merchants/most_revenue?quantity=x` returns the top `x` merchants ranked by total revenue
+* ✓`GET /api/v1/merchants/most_revenue?quantity=x` returns the top `x` merchants ranked by total revenue
 * ✓`GET /api/v1/merchants/most_items?quantity=x` returns the top `x` merchants ranked by total number of items sold
-* `GET /api/v1/merchants/revenue?date=x` returns the total revenue for date `x` across all merchants
+* ✓`GET /api/v1/merchants/revenue?date=x` returns the total revenue for date `x` across all merchants
 
 Assume the dates provided match the format of a standard ActiveRecord timestamp.
 

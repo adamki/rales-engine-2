@@ -46,7 +46,15 @@ class Merchant < ActiveRecord::Base
       .order("item_count DESC")
       .merge(InvoiceItem.successful)
       .limit(qty)
-    #    select / joins / group /  order / merge / limit
+  end
+
+  def self.most_revenue(qty)
+    select("merchants.*, sum(invoice_items.quantity * invoice_items.unit_price) as revenue")
+      .joins(:invoice_items)
+      .group("merchants.id")
+      .merge(InvoiceItem.successful)
+      .order("revenue DESC")
+      .limit(qty)
   end
 
   private
