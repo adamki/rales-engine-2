@@ -94,4 +94,40 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_kind_of Array, json_response
     assert_equal "Jhun", json_response["first_name"]
   end
+
+  test "#revenue returns total revenue for that merchant across all transactions" do
+    skip
+    customer = Customer.create(first_name: "Jhun", last_name: "bug")
+    rei = Merchant.create(name: "REI")
+
+    invoice_1 = Invoice.create(customer_id: customer.id,
+                             merchant_id: rei.id,
+                             status: "shipped")
+
+    invoice_2 = Invoice.create(customer_id: customer.id,
+                             merchant_id: rei.id,
+                             status: "shipped")
+
+    transaction_1 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+
+    transaction_2 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+
+    transaction_3 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id)
+
+
+    item = Item.create(name: "winter gloves", 
+                       description: "Warm enough for you",
+                       unit_price: "19.99")
+
+    get :total_revenue, id: rei.id, format: :json
+
+    assert_response :success
+    assert_equal "Jhun", json_response["first_name"]
+  end
 end
