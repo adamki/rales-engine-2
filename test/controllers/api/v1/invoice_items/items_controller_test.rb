@@ -3,13 +3,15 @@ require 'test_helper'
 class Api::V1::InvoiceItems::ItemsControllerTest < ActionController::TestCase
   test "#show returns the associated item for a given invoice_item" do
     item = Item.create(name: "test item",
-                       description: "test description")
+                       description: "test description",
+                       unit_price: 49995)
 
     not_associated_item = Item.create(name: "test item",
-                       description: "test description")
+                                      description: "test description",
+                                      unit_price: 49995)
 
     invoice_item = InvoiceItem.create(quantity: 12,
-                                      unit_price: "49995",
+                                      unit_price: 49995,
                                       item_id: item.id)
 
     get :show, id: invoice_item.id, format: :json

@@ -2,7 +2,10 @@ class InvoiceItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :invoice
 
-  scope :successful, -> { joins(:invoice).merge(Invoice.success) }
+  has_many :transactions, through: :invoice
+
+  #scope :successful, -> { joins(:invoice).merge(Invoice.success) }
+  scope :successful, -> { joins(:transactions).where("transactions.result" => "success") }
 
   before_save :curreny_conversion
 

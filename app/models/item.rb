@@ -20,4 +20,26 @@ class Item < ActiveRecord::Base
     joins(:invoice_items).where(invoice_items: { id: invoice_item_id }).first
   end
 
+  def self.highest_ranked_merchant_by(qty)
+    select("items.*, count(invoice_items.quantity) as item_count")
+      .joins(:invoice_items)
+      .merge(InvoiceItem.successful)
+      .uniq
+      .group("items.id")
+      .order("item_count DESC")
+      .limit(qty)
+  end
+
+  def self.most_revenue(qty)
+    select("items.*, count(invoice_items.quantity) as item_count")
+      .joins(:invoice_items)
+      .group("items.id")
+      .order("item_count DESC")
+      .limit(qty)
+  end
+
+  def total_sold
+    invoice_items.sum('quantity')
+  end
+
 end

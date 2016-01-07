@@ -27,11 +27,21 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
   end
 
   test "#find_all" do
-    skip
-    get :find_all,  merchant_id: 1, format: :json
+    item = Item.create(name: "test item",
+                       description: "test description",
+                       unit_price: 49995)
+
+    item_2 = Item.create(name: "test item",
+                                      description: "test description",
+                                      unit_price: 49995)
+    
+    invoice_item = InvoiceItem.create(quantity: 12,
+                                      unit_price: 49995,
+                                      item_id: item.id)
+
+    get :find_all, name: item.name, format: :json
 
     assert_response :success
-    assert_equal "Some Description", json_response.first["description"]
-    assert_equal "Some Description", json_response.second["description"]
+    assert_equal "test description", json_response.first["description"]
   end
 end
