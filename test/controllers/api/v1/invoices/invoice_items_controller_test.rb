@@ -17,7 +17,7 @@ class Api::V1::Invoices::InvoiceItemsControllerTest < ActionController::TestCase
     assert_kind_of Array, json_response
     assert_equal 2, json_response.count
 
-    assert_equal invoice_item_one[:unit_price], json_response.first["unit_price"]
-    assert_equal invoice_item_two[:unit_price], json_response.second["unit_price"]
+    assert_equal invoice_item_one[:unit_price], json_response.first["unit_price"].to_f
+    assert_equal invoice_item_two[:unit_price], json_response.second["unit_price"].to_f
   end
 end

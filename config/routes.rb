@@ -11,6 +11,7 @@ Rails.application.routes.draw do
           get :revenue
           get :favorite_customer
           get :customers_with_pending_invoices
+          get 'revenue', to: "merchants#total_revenue"
         end
 
         collection do

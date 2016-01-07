@@ -2,10 +2,12 @@ class InvoiceItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :invoice
 
-  before_create :curreny_conversion
+  scope :successful, -> { joins(:invoice).merge(Invoice.success) }
+
+  before_save :curreny_conversion
 
   def curreny_conversion
-    self.unit_price = (self.unit_price.to_f/100)
+    self.unit_price = (self.unit_price/100.00)
   end
 
   def self.item(id)

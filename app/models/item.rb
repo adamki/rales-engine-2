@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   default_scope {order('ID ASC')}
 
   def currency_conversion
-    self.unit_price = (self.unit_price/100)
+    self.unit_price = (self.unit_price/100.00)
   end
 
   def self.invoices(id)

@@ -2,9 +2,10 @@ class Merchant < ActiveRecord::Base
   has_many :items
   has_many :invoices
   has_many :customers, through: :invoices
+  has_many :invoice_items, through: :invoices
   has_many :transactions, through: :invoices
 
-  def self.invoices(id)
+  def self.invoice(id)
     joins(:invoices).where(invoices: {id: id}).first
   end
 
@@ -24,5 +25,26 @@ class Merchant < ActiveRecord::Base
     invoices.joins(:transactions)
     .merge(Transaction.unsuccessful)
     .map(&:customer).uniq
+  end
+
+  #def self.revenue(id,  date)
+    #if date.nil?
+      #invoices.successful
+              #.joins(:invoice_items)
+              #.sum('quantity * unit_price')
+    #else
+      #invoices.successful
+              #.where(invoices: { created_at: date })
+              #.joins(:invoice_items)
+              #.sum('quantity * unit_price')
+    #end
+  #end
+
+  def self.total_revenue(date)
+    select("merchants.*")
+      .joins(invoices: :invoice_items)
+      .merge(InvoiceItem.successful)
+      .where(invoices: { created_at: date })
+      .sum('quantity * unit_price').to_s
   end
 end

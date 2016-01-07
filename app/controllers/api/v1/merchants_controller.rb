@@ -34,10 +34,19 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.find(params[:id]).customers_with_pending_invoices
   end
 
+  def self.revenue
+    revenue = Merchant.find(params[:id]).revenue(merchant_params[:id], merchant_params[:date])
+    respond_with({"revenue" => revenue.to_s})
+  end
+
+  def total_revenue
+    respond_with total_revenue: Merchant.total_revenue(params[:date])
+  end
+
   private
   
     def merchant_params
-      params.permit(:id, :name, :created_at, :updated_at)
+      params.permit(:id, :name, :created_at, :updated_at, :date)
     end
 
     def current_merchant

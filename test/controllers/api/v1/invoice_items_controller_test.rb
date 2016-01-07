@@ -15,11 +15,11 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal 24, json_response["quantity"]
-    assert_equal "503", json_response["unit_price"]
+    assert_equal "503.0", json_response["unit_price"]
   end
 
   test "#find" do
-    get :find, unit_price: "503", format: :json
+    get :find, unit_price: "503.0", format: :json
 
     assert_response :success
     assert_equal 24, json_response["quantity"]
@@ -30,8 +30,8 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal 2, json_response.count
-    assert_equal "503", json_response.first["unit_price"]
-    assert_equal "60323", json_response.second["unit_price"]
+    assert_equal "503.0", json_response.first["unit_price"]
+    assert_equal "60323.0", json_response.second["unit_price"]
   end
 
 end
