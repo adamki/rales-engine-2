@@ -141,9 +141,9 @@ Assume the dates provided match the format of a standard ActiveRecord timestamp.
 
 #### Single Merchant
 
-* `GET /api/v1/merchants/:id/revenue` returns the total revenue for that merchant across all transactions
-* `GET /api/v1/merchants/:id/revenue?date=x` returns the total revenue for that merchant for a specific invoice date `x`
-* ✓ `GET /api/v1/merchants/:id/favorite_customer` returns the customer who has conducted the most successful transactions
+* ✓`GET /api/v1/merchants/:id/revenue` returns the total revenue for that merchant across all transactions
+* ✓`GET /api/v1/merchants/:id/revenue?date=x` returns the total revenue for that merchant for a specific invoice date `x`
+* ✓`GET /api/v1/merchants/:id/favorite_customer` returns the customer who has conducted the most successful transactions
 * ✓`GET /api/v1/merchants/:id/customers_with_pending_invoices` returns a collection of customers which have pending (unpaid) invoices
 
 _NOTE_: Failed charges should never be counted in revenue totals or statistics.
