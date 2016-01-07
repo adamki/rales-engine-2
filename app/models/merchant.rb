@@ -28,16 +28,7 @@ class Merchant < ActiveRecord::Base
   end
 
   def revenue(date = nil)
-    if date.nil?
-      invoices.success
-              .joins(:invoice_items)
-              .sum('quantity * unit_price').to_s
-    else
-      invoices.success
-              .where(invoices: { created_at: date })
-              .joins(:invoice_items)
-              .sum('quantity * unit_price').to_s
-    end
+    date.nil? ? revenue_for_merchant : revenue_for_merchant_by(date)
   end
 
   def self.total_revenue(date)
@@ -45,6 +36,31 @@ class Merchant < ActiveRecord::Base
       .joins(invoices: :invoice_items)
       .merge(InvoiceItem.successful)
       .where(invoices: { created_at: date })
+      .sum('quantity * unit_price').to_s
+  end
+
+  def self.most_items(qty)
+    select("merchants.*, sum(invoice_items.quantity) as item_count")
+      .joins(:invoice_items)
+      .group("merchants.id")
+      .order("item_count DESC")
+      .merge(InvoiceItem.successful)
+      .limit(qty)
+    #    select / joins / group /  order / merge / limit
+  end
+
+  private
+
+  def revenue_for_merchant
+    invoices.success
+      .joins(:invoice_items)
+      .sum('quantity * unit_price').to_s
+  end
+
+  def revenue_for_merchant_by(date)
+    invoices.success
+      .where(invoices: { created_at: date })
+      .joins(:invoice_items)
       .sum('quantity * unit_price').to_s
   end
 end
