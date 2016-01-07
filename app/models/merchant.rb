@@ -27,18 +27,18 @@ class Merchant < ActiveRecord::Base
     .map(&:customer).uniq
   end
 
-  #def self.revenue(id,  date)
-    #if date.nil?
-      #invoices.successful
-              #.joins(:invoice_items)
-              #.sum('quantity * unit_price')
-    #else
-      #invoices.successful
-              #.where(invoices: { created_at: date })
-              #.joins(:invoice_items)
-              #.sum('quantity * unit_price')
-    #end
-  #end
+  def revenue(date = nil)
+    if date.nil?
+      invoices.success
+              .joins(:invoice_items)
+              .sum('quantity * unit_price').to_s
+    else
+      invoices.success
+              .where(invoices: { created_at: date })
+              .joins(:invoice_items)
+              .sum('quantity * unit_price').to_s
+    end
+  end
 
   def self.total_revenue(date)
     select("merchants.*")

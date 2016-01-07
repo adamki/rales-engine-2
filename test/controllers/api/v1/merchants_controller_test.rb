@@ -130,4 +130,51 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "Jhun", json_response["first_name"]
   end
+
+  test "#revenue returns total amount for a given merchant on a given date" do
+    customer = Customer.create(first_name: "Jhun", last_name: "bug")
+    rei = Merchant.create(name: "REI")
+
+    invoice_1 = Invoice.create(customer_id: customer.id,
+                             merchant_id: rei.id,
+                             status: "shipped",
+                              created_at: "2012-03-16 11:55:05")
+
+    invoice_2 = Invoice.create(customer_id: customer.id,
+                             merchant_id: rei.id,
+                             status: "shipped",
+                              created_at: "2012-03-16 11:55:05" )
+
+    transaction_1 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id,
+                                       created_at: "2012-03-16 11:55:05")
+
+
+    transaction_2 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id, 
+                                       created_at: "2012-03-16 11:55:05")
+
+    transaction_3 = Transaction.create(credit_card_number: "1234123412341234",
+                                       result: "success",
+                                       invoice_id: invoice_1.id,
+                                       created_at: "2012-03-16 11:55:05")
+
+
+    item = Item.create(name: "winter gloves", 
+                       description: "Warm enough for you",
+                       unit_price: 1999)
+
+    invoice_item = InvoiceItem.create(item_id: item.id,
+                                      invoice_id: invoice_1.id,
+                                      quantity: 2,
+                                      unit_price: 19999)
+
+
+    get :revenue, id: rei.id, date: "2012-03-16 11:55:05", format: :json
+
+    assert_response :success
+    assert_equal "1199.94", json_response["revenue"]
+  end
 end

@@ -8,10 +8,9 @@ Rails.application.routes.draw do
         resources :invoices, only: [:index], module: "merchants"
 
         member do
-          get :revenue
+          get :revenue, defaults: {format: 'json'}
           get :favorite_customer
           get :customers_with_pending_invoices
-          get 'revenue', to: "merchants#total_revenue"
         end
 
         collection do
