@@ -63,17 +63,19 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
   end
 
   test "#customers_with_pending_invoices returns a collection of of customers" do
-    skip
     rei = Merchant.create(name: "REI")
 
     #success
     juhn = Customer.create(first_name: "Jhun", last_name: "bug")
+
     invoice_1 = Invoice.create(customer_id: juhn.id,
                              merchant_id: rei.id,
                              status: "shipped")
+
     transaction_1 = Transaction.create(credit_card_number: "1234123412341234",
                                        result: "success",
                                        invoice_id: invoice_1.id)
+
     transaction_2 = Transaction.create(credit_card_number: "1234123412341234",
                                        result: "success",
                                        invoice_id: invoice_1.id)
@@ -92,11 +94,11 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 1, json_response.count
     assert_kind_of Array, json_response
-    assert_equal "Jhun", json_response["first_name"]
+    assert_equal "Adam", json_response.first["first_name"]
+    assert_equal "Adam", json_response.first["first_name"]
   end
 
   test "#revenue returns total revenue for that merchant across all transactions" do
-    skip
     customer = Customer.create(first_name: "Jhun", last_name: "bug")
     rei = Merchant.create(name: "REI")
 
@@ -120,15 +122,10 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
                                        result: "success",
                                        invoice_id: invoice_1.id)
 
-
-    item = Item.create(name: "winter gloves", 
-                       description: "Warm enough for you",
-                       unit_price: "19.99")
-
     get :total_revenue, id: rei.id, format: :json
 
     assert_response :success
-    assert_equal "Jhun", json_response["first_name"]
+    assert_equal "0.0", json_response["total_revenue"]
   end
 
   test "#revenue returns total amount for a given merchant on a given date" do
@@ -153,7 +150,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
 
     transaction_2 = Transaction.create(credit_card_number: "1234123412341234",
                                        result: "success",
-                                       invoice_id: invoice_1.id, 
+                                       invoice_id: invoice_1.id,
                                        created_at: "2012-03-16 11:55:05")
 
     transaction_3 = Transaction.create(credit_card_number: "1234123412341234",
@@ -162,7 +159,7 @@ class Api::V1::MerchantsControllerTest < ActionController::TestCase
                                        created_at: "2012-03-16 11:55:05")
 
 
-    item = Item.create(name: "winter gloves", 
+    item = Item.create(name: "winter gloves",
                        description: "Warm enough for you",
                        unit_price: 1999)
 

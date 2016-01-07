@@ -59,12 +59,15 @@ Rails.application.routes.draw do
         member do
           get :merchant, to: "items/merchants#show"
           get :invoice_items, to: "items/invoice_items#index"
+          get :best_day
         end
 
         collection do
           get "find"
           get "find_all"
           get "random"
+          get "most_items"
+          get "most_revenue"
         end
       end
 
